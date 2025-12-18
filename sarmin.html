@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার প্রিয় শারমিনকে ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --secondary-pink: #ffeef2;
+            --text-color: #333;
+            --heart-red: #e0245e;
+            --shadow-medium: rgba(0,0,0,0.2);
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Tiro Bangla', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--secondary-pink) 0%, #fce4ec 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Music Button Style */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-size: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .container {
+            background: linear-gradient(145deg, #ffffff, #fefefe);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px var(--shadow-medium);
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            animation: fadeInScale 1s ease-out forwards;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        h1 {
+            color: var(--primary-pink);
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .heart-icon {
+            font-size: 3em;
+            color: var(--heart-red);
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .letter-content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #444;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .letter-content p {
+            margin-bottom: 1em;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .letter-content strong {
+            color: var(--primary-pink);
+            font-weight: 700;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-size: 1.3em;
+            color: var(--primary-pink);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .buttons {
+            margin-top: 40px;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-family: 'Hind Siliguri', sans-serif;
+            margin: 0 10px;
+        }
+
+        #yesBtn {
+            background-color: var(--primary-pink);
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #888;
+            color: white;
+            position: relative;
+        }
+
+        /* Background Hearts */
+        .heart-bubble {
+            position: absolute;
+            background: var(--heart-red);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatHearts 15s infinite ease-in;
+        }
+
+        @keyframes floatHearts {
+            0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-1000px) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-pink);
+            animation: confettiFall 3s forwards;
+            border-radius: 50%;
+            z-index: 9999;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+        }
+    </style>
+</head>
+<body onclick="playMusic()">
+
+    <div class="music-control" onclick="toggleMusic()">🎵</div>
+    <audio id="myAudio" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="background-elements" id="bgElements"></div>
+
+    <div class="container">
+        <h1>প্রিয় শারমিন ❤️</h1>
+        <p class="heart-icon">💖</p>
+
+        <div class="letter-content" id="mainLetter">
+            <p><strong>আমার লক্ষ্মী শারমিন,</strong></p>
+            <p>জানি, তোমার মন খারাপ। হয়তো আমার কোনো কথায় তুমি কষ্ট পেয়েছ। সত্যি বলতে, যখন দেখি তুমি আমার উপর রাগ করে আছো, তখন আমার নিজেরও খুব কষ্ট হয়। মনে হয় যেন চারপাশটা অন্ধকার হয়ে গেছে।</p>
+            <p>তুমি আমার কাছে কতটা স্পেশাল, সেটা বলে বোঝানো কঠিন। তোমার ওই সুন্দর হাসিটা আমার দিনটাকে আলোকিত করে তোলে। আমি জানি আমি নিখুঁত নই, ভুল করি। কিন্তু তোমাকে কষ্ট দেওয়াটা আমার উদ্দেশ্য ছিল না।</p>
+            <p>যদি আমার কোনো ভুলের কারণে তোমার মন খারাপ হয়ে থাকে, তবে তার জন্য আমি <strong>আন্তরিকভাবে দুঃখিত</strong>। প্লিজ শারমিন, আর রাগ করে থেকো না। এই পাগলটাকে কি মাফ করা যায় না? 🥺</p>
+            <p>আমি তোমাকে <strong>খুব ভালোবাসি</strong>। তোমার ওই হাসিটা আবার দেখতে চাই।</p>
+        </div>
+
+        <p class="signature">ইতি,<br>তোমারই <strong>ইলিয়াছ (Elias)</strong></p>
+
+        <div class="buttons" id="btnGroup">
+            <button id="yesBtn">হ্যাঁ, আমি রাগ ভাঙালাম! 😊</button>
+            <button id="noBtn">না 😠</button>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById("myAudio");
+        let isPlaying = false;
+
+        function playMusic() {
+            if(!isPlaying) {
+                audio.play();
+                isPlaying = true;
+            }
+        }
+
+        function toggleMusic() {
+            if (audio.paused) audio.play();
+            else audio.pause();
+        }
+
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const letterContent = document.getElementById('mainLetter');
+        const bgElements = document.getElementById('bgElements');
+
+        // No button moves away
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            letterContent.innerHTML = `
+                <p><strong>আমার লক্ষ্মী শারমিন!</strong></p>
+                <p>আমি জানতাম তুমি এই ইলিয়াছ-কে বেশিক্ষণ রাগ করে থাকতে পারবে না। তোমার এই সুন্দর মনটার জন্যই তো আমি তোমাকে এতো ভালোবাসি! ❤️</p>
+                <p>তোমার মুখে হাসি দেখে আমার মনটা শান্ত হলো। আজ থেকে শুধু আমাদের ভালোবাসা আর অনেক অনেক হাসি! 😊</p>
+                <p>অনেক ভালোবাসি তোমাকে শারমিন!</p>
+            `;
+            document.getElementById('btnGroup').style.display = 'none';
+            createConfetti(50);
+            document.body.style.background = 'linear-gradient(135deg, #a7d9ff 0%, #d1f7d1 100%)';
+        });
+
+        // Create random background hearts
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart-bubble';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '-50px';
+            heart.style.width = heart.style.height = (Math.random() * 20 + 20) + 'px';
+            heart.style.animationDelay = (Math.random() * 5) + 's';
+            document.body.appendChild(heart);
+        }
+
+        function createConfetti(num) {
+            for (let i = 0; i < num; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti-piece');
+                confetti.style.setProperty('--x', `${Math.random() * 600 - 300}px`);
+                confetti.style.setProperty('--y', `${Math.random() * 600 - 300}px`);
+                confetti.style.left = '50%';
+                confetti.style.top = '50%';
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
